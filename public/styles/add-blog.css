@@ -1,0 +1,26 @@
+.add-blog-shell {
+  padding: 2rem 0 3rem;
+}
+
+.add-blog-form {
+  width: min(100%, 860px);
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.add-blog-form .form-control,
+.add-blog-form textarea {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.add-blog-form textarea {
+  min-height: 220px;
+}
+
+.add-blog-form .btn-outline-primary {
+  min-width: 180px;
+}

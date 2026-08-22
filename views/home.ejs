@@ -3,58 +3,27 @@
 <head>
     <%- include('./partials/head.ejs') %>
     <title>HomePage</title>
-    <style>
-        .card {
-            height: 360px;
-        }
-
-        .card-img-top {
-            height: 210px;
-            object-fit: cover;
-        }
-
-        .card-body {
-            display: flex;
-            flex-direction: column;
-            padding-bottom: 0.9rem;
-        }
-
-        .card-title {
-            flex: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .btn-primary {
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.18);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(13, 110, 253, 0.22);
-        }
-    </style>
+    <link rel="stylesheet" href="/styles/home.css">
 </head>
 <body>
     <%- include('./partials/nav.ejs') %>
     <!-- <%= JSON.stringify(user) %> -->
     <!-- <%= JSON.stringify(blogs) %> -->
 
-    <div class="container mt-3 row row-cols-4">
-        <% blogs.forEach(blog => { %>
-            <div class="col">
-                <div class="card mt-3" style="width: 18rem;">
-                <img src="<%= blog.coverImageUrl %>" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title"><%= blog.title %></h5>
-                    <!-- <p class="card-text"><%= blog.body %></p> -->
-                    <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+    <div class="container home-page mt-3">
+        <div class="home-grid">
+            <% blogs.forEach(blog => { %>
+                <div class="col">
+                    <div class="card home-card mt-3">
+                        <img src="<%= blog.coverImageUrl %>" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= blog.title %></h5>
+                            <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
                 </div>
-                </div>
-            </div>
-        <% }) %>
+            <% }) %>
+        </div>
     </div>
     <%- include('./partials/scripts.ejs') %>
 </body>

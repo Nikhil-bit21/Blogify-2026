@@ -1,0 +1,28 @@
+.auth-shell {
+  min-height: calc(100vh - 76px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.auth-form {
+  width: min(100%, 620px);
+  padding: 2rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.auth-form .row {
+  margin: 0;
+}
+
+.auth-form .col-md-6 {
+  margin-bottom: 1.1rem;
+}
+
+.auth-form .btn-primary {
+  min-width: 150px;
+}
