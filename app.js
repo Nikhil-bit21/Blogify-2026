@@ -32,7 +32,11 @@ app.get('/',async(req,res)=>{
     const allBlogs = await blog.find({});
     var fullName;
     if(req.user){
-        const user = await User.findById(req.user._id)
+        const user = await User.findById(req.user._id);
+        if (!user) {
+            res.clearCookie('token');
+            return res.redirect('/user/signin');
+        }
         fullName = user.fullName
     }
     //console.log(req.user);
