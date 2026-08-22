@@ -5,6 +5,7 @@ function createTokenForUser(user){
     const payload = {
         _id : user._id,
         email : user.email,
+        name : user.fullName,
         profileImageUrl : user.profileImageUrl,
         role : user.role,
     }

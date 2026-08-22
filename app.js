@@ -1,16 +1,19 @@
 const express = require('express');
 const path = require('path');
-const PORT = 3000;
 const userRoute = require('./routes/user');
 const blogRoute = require('./routes/blog');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { checkForAuthenticationCookie } = require('./middlewares/authentication');
 const {blog} = require('./models/blog');
+const {User} = require('./models/user');
+require('dotenv').config();
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/swamiBlogs').then(e=>{
+const PORT = process.env.PORT || 3000;
+const mongoURL = process.env.MONGO_URL;
+mongoose.connect(mongoURL).then(e=>{
     console.log(`MongoDb is Connected`);
 })
 
@@ -27,9 +30,17 @@ app.use('/blog',blogRoute);
 
 app.get('/',async(req,res)=>{
     const allBlogs = await blog.find({});
+    var fullName;
+    if(req.user){
+        const user = await User.findById(req.user._id)
+        fullName = user.fullName
+    }
+    //console.log(req.user);
+    // console.log(fullName);
     res.render('home',{
         user: req.user,
-        blogs : allBlogs
+        blogs : allBlogs,
+        name : fullName
     });
 })
 
