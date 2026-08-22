@@ -17,7 +17,11 @@ router.post('/signup',async(req,res)=>{
         email,
         password
     });
-    return res.redirect('/');
+    const token = await User.matchPasswordAndGenerateToken(email,password);
+    return res.cookie("token",token,{
+            httpOnly:true,
+            maxAge : 60*60*1000
+        }).redirect('/');
 })
 
 router.post('/signin',async (req,res)=>{
@@ -26,7 +30,10 @@ router.post('/signin',async (req,res)=>{
         const token = await User.matchPasswordAndGenerateToken(email,password);
 
         //console.log("Token",token);
-        return res.cookie("token",token).redirect('/');
+        return res.cookie("token",token,{
+            httpOnly:true,
+            maxAge : 60*60*1000
+        }).redirect('/');
     }catch(err){
         return res.render("signin",{
             error : "Incorrect email or Password",

@@ -9,7 +9,7 @@ function createTokenForUser(user){
         profileImageUrl : user.profileImageUrl,
         role : user.role,
     }
-    const token = JWT.sign(payload,secret);
+    const token = JWT.sign(payload,secret,{expiresIn:'1h'});
     return token;
 }
 
